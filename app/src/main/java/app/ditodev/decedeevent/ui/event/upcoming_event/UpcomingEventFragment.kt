@@ -1,4 +1,4 @@
-package app.ditodev.decedeevent.ui.upcoming_event
+package app.ditodev.decedeevent.ui.event.upcoming_event
 
 import android.os.Bundle
 import android.view.LayoutInflater
