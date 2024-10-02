@@ -18,14 +18,14 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="app.ditodev.decedeevent.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_finished"
+        android:name="app.ditodev.decedeevent.ui.event.finished_event.FinishedEventFragment"
+        android:label="Finished"
+        tools:layout="@layout/fragment_finished_event" />
 
     <fragment
         android:id="@+id/navigation_upcoming"
-        android:name="app.ditodev.decedeevent.ui.upcoming_event.UpcomingEventFragment"
+        android:name="app.ditodev.decedeevent.ui.event.upcoming_event.UpcomingEventFragment"
         android:label="Upcoming"
         tools:layout="@layout/fragment_upcoming_event">
     </fragment>

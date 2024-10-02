@@ -1,4 +1,4 @@
-package app.ditodev.decedeevent.ui.notifications
+package app.ditodev.decedeevent.ui.event.finished_event
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
