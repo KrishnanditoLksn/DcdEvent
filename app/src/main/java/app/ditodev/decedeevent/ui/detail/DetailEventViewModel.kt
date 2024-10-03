@@ -5,40 +5,41 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.ditodev.decedeevent.data.api.config.ApiConfig
-import app.ditodev.decedeevent.data.api.response.EventResponse
-import app.ditodev.decedeevent.data.api.response.ListEventsItem
+import app.ditodev.decedeevent.data.api.response.DetailEventResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class DetailEventViewModel : ViewModel() {
-    private var _listEvent = MutableLiveData<ListEventsItem?>()
-    val listEvent:LiveData<ListEventsItem?> = _listEvent
+    private var _detailEvent = MutableLiveData<DetailEventResponse?>()
+    val detailEvent: LiveData<DetailEventResponse?> = _detailEvent
 
     private var _isLoading = MutableLiveData<Boolean>()
-    val isLoading : LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
 
 
-    fun fetchDetailEvents(eventId : Int) {
-//        _isLoading.value = true
+    fun fetchDetailEvents(eventId: Int) {
+        _isLoading.value = true
 
         val client = ApiConfig.getApiService().getEventDetail(eventId)
 
         client.enqueue(
-            (object : Callback<EventResponse> {
+            (object : Callback<DetailEventResponse> {
                 override fun onResponse(
-                    call: Call<EventResponse>,
-                    response: Response<EventResponse>
+                    call: Call<DetailEventResponse>,
+                    response: Response<DetailEventResponse>
                 ) {
+                    _isLoading.value = false
                     val responseBody = response.body()
-                    Log.d("IniRespondariBody", "onCreate: ${responseBody?.event?.toString()}")
                     if (response.isSuccessful) {
-                        _listEvent.value = responseBody?.event
-//                        Log.d("IniRespondariViewModel", "onCreate: ${responseBody?.event?.name.toString()}")
+//                        Log.d("DetailEventViewModel", "Response received: $responseBody")
+                        _detailEvent.value = responseBody
                     }
                 }
-                override fun onFailure(call: Call<EventResponse>, t: Throwable) {
-//                    _isLoading.value = false
+
+                override fun onFailure(call: Call<DetailEventResponse>, t: Throwable) {
+                    _isLoading.value = false
+                    Log.v("IniRespondariFailure", "onCreate: ${t.message}")
                 }
 
             })
