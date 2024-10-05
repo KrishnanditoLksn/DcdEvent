@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.ditodev.decedeevent.data.api.config.ApiConfig
 import app.ditodev.decedeevent.data.api.response.DetailEventResponse
+import okio.IOException
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,14 +33,12 @@ class DetailEventViewModel : ViewModel() {
                     _isLoading.value = false
                     val responseBody = response.body()
                     if (response.isSuccessful) {
-//                        Log.d("DetailEventViewModel", "Response received: $responseBody")
                         _detailEvent.value = responseBody
                     }
                 }
 
                 override fun onFailure(call: Call<DetailEventResponse>, t: Throwable) {
                     _isLoading.value = false
-                    Log.v("IniRespondariFailure", "onCreate: ${t.message}")
                 }
 
             })

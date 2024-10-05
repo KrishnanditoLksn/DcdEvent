@@ -1,8 +1,8 @@
 package app.ditodev.decedeevent.ui.detail
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
@@ -28,19 +28,20 @@ class DetailEventActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this)[DetailEventViewModel::class.java]
         val eventId = intent.getIntExtra(Util.EXTRA_ID, 0)
-        Log.d("IniHalamanDetail", "onCreate: $eventId")
         viewModel.fetchDetailEvents(eventId)
+
 
         viewModel.detailEvent.observe(this) { event ->
             if (event != null) {
                 Glide.with(this)
                     .load(event.event?.imageLogo)
+                    .placeholder(R.drawable.loading_indicator)
+                    .error(R.drawable.error_image)
                     .into(binding.ivDetailImage)
-                Log.d("IniRespondariApi", "onCreate: ${event.event?.name}")
                 binding.tvDetailName.text = event.event?.name
                 binding.tvOwnerName.text = event.event?.ownerName
                 binding.tvBeginTime.text = event.event?.beginTime
-                binding.tvQuota.text = event.event?.quota.toString()
+                binding.tvQuota.text = (event.event?.quota?.minus(event.event.registrants!!)).toString()
 
                 binding.tvDescription.text = event.event?.description?.let {
                     HtmlCompat.fromHtml(
@@ -50,13 +51,12 @@ class DetailEventActivity : AppCompatActivity() {
                 }
 
                 binding.btnShare.setOnClickListener {
-                    val share = Intent.createChooser(Intent().apply {
-                        action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, event.event?.link)
-                        type = "text/plain"
+                    val redirect = Intent.createChooser(Intent().apply {
+                        action = Intent.ACTION_VIEW
+                        data = Uri.parse(event.event?.link)
                     }, null)
 
-                    startActivity(share)
+                    startActivity(redirect)
                 }
             }
         }
