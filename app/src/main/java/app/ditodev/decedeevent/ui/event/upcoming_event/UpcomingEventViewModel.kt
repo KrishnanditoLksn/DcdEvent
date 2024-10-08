@@ -1,6 +1,5 @@
 package app.ditodev.decedeevent.ui.event.upcoming_event
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,8 +11,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UpcomingEventViewModel : ViewModel() {
-//    private var _listEvent = MutableLiveData<ListEventsItem?>()
-//    val listEvent: LiveData<ListEventsItem?> = _listEvent
 
     private var _listEvent = MutableLiveData<List<ListEventsItem>>()
     val listEvent: LiveData<List<ListEventsItem>> = _listEvent
@@ -21,12 +18,11 @@ class UpcomingEventViewModel : ViewModel() {
     private var _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private var _isError = MutableLiveData<Boolean>()
-    val isError: LiveData<Boolean> = _isError
 
     init {
         fetchEvents()
     }
+
     private fun fetchEvents() {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getListEvents("1")
@@ -40,9 +36,6 @@ class UpcomingEventViewModel : ViewModel() {
                     val responseBody = response.body()
 
                     if (response.isSuccessful) {
-                        /*
-                        hello from API
-                         */
                         _listEvent.value = responseBody?.listEvents
                     }
                 }
