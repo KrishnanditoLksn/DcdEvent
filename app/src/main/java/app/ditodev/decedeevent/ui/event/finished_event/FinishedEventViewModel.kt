@@ -3,9 +3,9 @@ package app.ditodev.decedeevent.ui.event.finished_event
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import app.ditodev.decedeevent.data.api.config.ApiConfig
-import app.ditodev.decedeevent.data.api.response.EventResponse
-import app.ditodev.decedeevent.data.api.response.ListEventsItem
+import app.ditodev.decedeevent.data.remote.api.config.ApiConfig
+import app.ditodev.decedeevent.data.remote.api.response.EventResponse
+import app.ditodev.decedeevent.data.remote.api.response.ListEventsItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

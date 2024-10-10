@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.ditodev.decedeevent.data.api.response.ListEventsItem
+import app.ditodev.decedeevent.data.remote.api.response.ListEventsItem
 import app.ditodev.decedeevent.databinding.FragmentFinishedEventBinding
 import app.ditodev.decedeevent.ui.adapter.UpcomingEventAdapter
 
@@ -48,7 +48,7 @@ class FinishedEventFragment : Fragment() {
 
     private fun setFinishedEvents(listEvents: List<ListEventsItem>) {
         val adapter = UpcomingEventAdapter()
-        adapter.submitList(listEvents)
+        adapter.submitList(listEvents.take(5))
         binding.rvFinishedEvent.adapter = adapter
     }
 }
