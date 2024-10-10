@@ -1,7 +1,7 @@
-package app.ditodev.decedeevent.data.api.service
+package app.ditodev.decedeevent.data.remote.api.service
 
-import app.ditodev.decedeevent.data.api.response.DetailEventResponse
-import app.ditodev.decedeevent.data.api.response.EventResponse
+import app.ditodev.decedeevent.data.remote.api.response.DetailEventResponse
+import app.ditodev.decedeevent.data.remote.api.response.EventResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

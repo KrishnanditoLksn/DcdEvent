@@ -1,6 +1,6 @@
-package app.ditodev.decedeevent.data.api.config
+package app.ditodev.decedeevent.data.remote.api.config
 
-import app.ditodev.decedeevent.data.api.service.ApiService
+import app.ditodev.decedeevent.data.remote.api.service.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package app.ditodev.decedeevent.data.api.response
+package app.ditodev.decedeevent.data.remote.api.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -61,3 +61,4 @@ data class ListEventsItem(
     @field:SerializedName("category")
     val category: String? = null
 )
+
