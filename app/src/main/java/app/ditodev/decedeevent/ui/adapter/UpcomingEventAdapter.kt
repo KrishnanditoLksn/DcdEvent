@@ -1,17 +1,15 @@
 package app.ditodev.decedeevent.ui.adapter
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import app.ditodev.decedeevent.data.api.response.ListEventsItem
+import app.ditodev.decedeevent.data.remote.api.response.ListEventsItem
 import app.ditodev.decedeevent.databinding.EventRowBinding
 import app.ditodev.decedeevent.ui.detail.DetailEventActivity
 import app.ditodev.decedeevent.utils.Util
 import com.bumptech.glide.Glide
-import java.io.Serializable
 
 class UpcomingEventAdapter :
     ListAdapter<ListEventsItem, UpcomingEventAdapter.ViewHolder>(Util.DIFF_CALLBACK) {

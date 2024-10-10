@@ -1,16 +1,13 @@
 package app.ditodev.decedeevent
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import app.ditodev.decedeevent.databinding.ActivityMainBinding
-import app.ditodev.decedeevent.ui.detail.DetailEventViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_finished , R.id.navigation_upcoming
+                R.id.navigation_finished, R.id.navigation_upcoming
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

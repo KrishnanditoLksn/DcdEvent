@@ -1,12 +1,10 @@
 package app.ditodev.decedeevent.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import app.ditodev.decedeevent.data.api.config.ApiConfig
-import app.ditodev.decedeevent.data.api.response.DetailEventResponse
-import okio.IOException
+import app.ditodev.decedeevent.data.remote.api.config.ApiConfig
+import app.ditodev.decedeevent.data.remote.api.response.DetailEventResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
