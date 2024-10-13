@@ -3,19 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
-
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="app.ditodev.decedeevent.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="app.ditodev.decedeevent.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+    app:startDestination="@+id/navigation_finished">
 
     <fragment
         android:id="@+id/navigation_finished"
@@ -28,5 +16,20 @@
         android:name="app.ditodev.decedeevent.ui.event.upcoming_event.UpcomingEventFragment"
         android:label="Upcoming"
         tools:layout="@layout/fragment_upcoming_event">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="app.ditodev.decedeevent.ui.favorite.FavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="app.ditodev.decedeevent.ui.settings.SettingsPreference"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings_preference"
+        >
     </fragment>
 </navigation>
