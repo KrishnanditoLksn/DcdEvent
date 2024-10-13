@@ -10,12 +10,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import app.ditodev.decedeevent.R
+import app.ditodev.decedeevent.data.local.entity.EventEntity
 import app.ditodev.decedeevent.databinding.ActivityDetailEventBinding
 import app.ditodev.decedeevent.utils.Util
+import app.ditodev.decedeevent.utils.ViewModelFactory
 import com.bumptech.glide.Glide
 
 class DetailEventActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailEventBinding
+    private var cek: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailEventBinding.inflate(layoutInflater)
@@ -26,10 +29,10 @@ class DetailEventActivity : AppCompatActivity() {
             insets
         }
 
-        val viewModel = ViewModelProvider(this)[DetailEventViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailEventViewModel::class.java]
         val eventId = intent.getIntExtra(Util.EXTRA_ID, 0)
         viewModel.fetchDetailEvents(eventId)
-
 
         viewModel.detailEvent.observe(this) { event ->
             if (event != null) {
@@ -41,7 +44,8 @@ class DetailEventActivity : AppCompatActivity() {
                 binding.tvDetailName.text = event.event?.name
                 binding.tvOwnerName.text = event.event?.ownerName
                 binding.tvBeginTime.text = event.event?.beginTime
-                binding.tvQuota.text = (event.event?.quota?.minus(event.event.registrants!!)).toString()
+                binding.tvQuota.text =
+                    (event.event?.quota?.minus(event.event.registrants!!)).toString()
 
                 binding.tvDescription.text = event.event?.description?.let {
                     HtmlCompat.fromHtml(
@@ -49,7 +53,6 @@ class DetailEventActivity : AppCompatActivity() {
                         HtmlCompat.FROM_HTML_MODE_LEGACY
                     )
                 }
-
                 binding.btnShare.setOnClickListener {
                     val redirect = Intent.createChooser(Intent().apply {
                         action = Intent.ACTION_VIEW
@@ -58,13 +61,41 @@ class DetailEventActivity : AppCompatActivity() {
 
                     startActivity(redirect)
                 }
+
+
+
+                binding.fabFavourite.setOnClickListener {
+                    val events = EventEntity(
+                        id = event.event?.id.toString(),
+                        name = event.event?.name.toString(),
+                        description = event.event?.description.toString(),
+                        mediaCover = event.event?.mediaCover.toString()
+                    )
+                    if (cek) {
+                        viewModel.insert(events)
+                        binding.fabFavourite.setImageResource(R.drawable.favourite_white)
+                    } else {
+                        viewModel.delete(events.id)
+                        binding.fabFavourite.setImageResource(R.drawable.favourite_black)
+                    }
+                    cek = !cek
+                }
             }
         }
 
+        viewModel.getFavoriteEventById(eventId.toString()).observe(this) {
+            if (it == null) {
+                binding.fabFavourite.setImageResource(R.drawable.favourite_black)
+            } else {
+                binding.fabFavourite.setImageResource(R.drawable.favourite_white)
+            }
+        }
         viewModel.isLoading.observe(
             this
         ) {
             binding.pbLoad.visibility = if (it) View.VISIBLE else View.GONE
         }
     }
+
+
 }
