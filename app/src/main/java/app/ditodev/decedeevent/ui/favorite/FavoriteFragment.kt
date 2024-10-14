@@ -18,14 +18,14 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val layoutManager = LinearLayoutManager(requireActivity())
-        binding.rvFavoriteEvent.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
-        binding.rvFavoriteEvent.addItemDecoration(itemDecoration)
+//        val layoutManager = LinearLayoutManager(requireActivity())
+//        binding.rvFavoriteEvent.layoutManager = layoutManager
+//        val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
+//        binding.rvFavoriteEvent.addItemDecoration(itemDecoration)
 
         val factory = Factory.getInstance(requireActivity())
         val viewModel =ViewModelProvider(this,factory)[FavoriteEventViewModel::class.java]
-        val adapter = UpcomingEventAdapter()
+        val eventAdapter = UpcomingEventAdapter()
 
 
         viewModel.getListEvent().observe(viewLifecycleOwner){
@@ -34,10 +34,15 @@ class FavoriteFragment : Fragment() {
             users.map {
                 val item = ListEventsItem(id = it.id.toInt() , name = it.name , imageLogo = it.mediaCover)
                 items.add(item)
-                adapter.submitList(items)
             }
+            eventAdapter.submitList(items)
         }
-        binding.rvFavoriteEvent.adapter = adapter
+        binding.rvFavoriteEvent.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = eventAdapter
+        }
+//        binding.rvFavoriteEvent.adapter = adapter
     }
 
     override fun onCreateView(
