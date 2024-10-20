@@ -1,4 +1,4 @@
-package app.ditodev.decedeevent.utils
+package app.ditodev.decedeevent.di
 
 import android.content.Context
 import app.ditodev.decedeevent.data.local.EventDatabase
