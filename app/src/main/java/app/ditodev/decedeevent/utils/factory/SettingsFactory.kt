@@ -1,7 +1,9 @@
-package app.ditodev.decedeevent.ui.settings
+package app.ditodev.decedeevent.utils.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import app.ditodev.decedeevent.ui.settings.SettingsDataStore
+import app.ditodev.decedeevent.ui.settings.SettingsViewModel
 
 class SettingsFactory(private val ref: SettingsDataStore) : ViewModelProvider.NewInstanceFactory() {
 
