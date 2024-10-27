@@ -46,7 +46,7 @@ class UpcomingEventFragment : Fragment() {
 
     private fun setupRecyclerView(listEventsItem: List<ListEventsItem>) {
         val adapter = UpcomingEventAdapter()
-        adapter.submitList(listEventsItem.take(5))
+        adapter.submitList(listEventsItem)
         binding.rvEvent.adapter = adapter
     }
 }

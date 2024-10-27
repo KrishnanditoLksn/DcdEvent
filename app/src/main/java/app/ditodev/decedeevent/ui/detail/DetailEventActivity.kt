@@ -13,7 +13,7 @@ import app.ditodev.decedeevent.R
 import app.ditodev.decedeevent.data.local.entity.EventEntity
 import app.ditodev.decedeevent.databinding.ActivityDetailEventBinding
 import app.ditodev.decedeevent.utils.Util
-import app.ditodev.decedeevent.utils.ViewModelFactory
+import app.ditodev.decedeevent.utils.factory.DetailEventViewModelFactory
 import com.bumptech.glide.Glide
 
 class DetailEventActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class DetailEventActivity : AppCompatActivity() {
             insets
         }
 
-        val factory = ViewModelFactory.getInstance(this)
+        val factory = DetailEventViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(this, factory)[DetailEventViewModel::class.java]
         val eventId = intent.getIntExtra(Util.EXTRA_ID, 0)
         viewModel.fetchDetailEvents(eventId)
@@ -72,11 +72,11 @@ class DetailEventActivity : AppCompatActivity() {
                         mediaCover = event.event?.mediaCover.toString()
                     )
                     if (cek) {
-                        viewModel.insert(events)
-                        binding.fabFavourite.setImageResource(R.drawable.favourite_white)
-                    } else {
-                        viewModel.delete(events.id)
                         binding.fabFavourite.setImageResource(R.drawable.favourite_black)
+                        viewModel.delete(events.id)
+                    } else {
+                        binding.fabFavourite.setImageResource(R.drawable.favourite_white)
+                        viewModel.insert(events)
                     }
                     cek = !cek
                 }
@@ -84,6 +84,7 @@ class DetailEventActivity : AppCompatActivity() {
         }
 
         viewModel.getFavoriteEventById(eventId.toString()).observe(this) {
+            cek = it != null
             if (it == null) {
                 binding.fabFavourite.setImageResource(R.drawable.favourite_black)
             } else {
@@ -96,6 +97,4 @@ class DetailEventActivity : AppCompatActivity() {
             binding.pbLoad.visibility = if (it) View.VISIBLE else View.GONE
         }
     }
-
-
 }

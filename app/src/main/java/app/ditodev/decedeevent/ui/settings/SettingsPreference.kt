@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import app.ditodev.decedeevent.R
+import app.ditodev.decedeevent.utils.factory.SettingsFactory
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 class SettingsPreference : Fragment() {

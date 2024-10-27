@@ -48,7 +48,7 @@ class FinishedEventFragment : Fragment() {
 
     private fun setFinishedEvents(listEvents: List<ListEventsItem>) {
         val adapter = UpcomingEventAdapter()
-        adapter.submitList(listEvents.take(5))
+        adapter.submitList(listEvents)
         binding.rvFinishedEvent.adapter = adapter
     }
 }

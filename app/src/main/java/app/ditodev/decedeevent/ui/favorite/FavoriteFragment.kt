@@ -6,33 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.ditodev.decedeevent.data.remote.api.response.ListEventsItem
 import app.ditodev.decedeevent.databinding.FragmentFavoriteBinding
 import app.ditodev.decedeevent.ui.adapter.UpcomingEventAdapter
-import app.ditodev.decedeevent.utils.Factory
+import app.ditodev.decedeevent.utils.factory.FavoriteViewModelFactory
 
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val layoutManager = LinearLayoutManager(requireActivity())
-//        binding.rvFavoriteEvent.layoutManager = layoutManager
-//        val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
-//        binding.rvFavoriteEvent.addItemDecoration(itemDecoration)
 
-        val factory = Factory.getInstance(requireActivity())
-        val viewModel =ViewModelProvider(this,factory)[FavoriteEventViewModel::class.java]
+        val factory = FavoriteViewModelFactory.getInstance(requireActivity())
+        val viewModel = ViewModelProvider(this, factory)[FavoriteEventViewModel::class.java]
         val eventAdapter = UpcomingEventAdapter()
 
 
-        viewModel.getListEvent().observe(viewLifecycleOwner){
-            users ->
+        viewModel.getListEvent().observe(viewLifecycleOwner) { users ->
             val items = arrayListOf<ListEventsItem>()
             users.map {
-                val item = ListEventsItem(id = it.id.toInt() , name = it.name , imageLogo = it.mediaCover)
+                val item =
+                    ListEventsItem(id = it.id.toInt(), name = it.name, imageLogo = it.mediaCover)
                 items.add(item)
             }
             eventAdapter.submitList(items)
@@ -42,7 +37,6 @@ class FavoriteFragment : Fragment() {
             setHasFixedSize(true)
             adapter = eventAdapter
         }
-//        binding.rvFavoriteEvent.adapter = adapter
     }
 
     override fun onCreateView(

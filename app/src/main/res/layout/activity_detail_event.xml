@@ -38,7 +38,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/template"
-            android:textColor="@color/black"
             android:textAlignment="center"
             app:layout_constraintTop_toBottomOf="@id/ivDetailImage"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +50,6 @@
             android:layout_marginTop="4dp"
             android:text="@string/textcontent"
             android:textAlignment="center"
-            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/tvDetailName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -63,7 +61,6 @@
             android:layout_marginTop="8dp"
             android:text="@string/template"
             android:textAlignment="center"
-            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/tvOwnerName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -75,7 +72,6 @@
             android:layout_marginTop="8dp"
             android:text="@string/template"
             android:textAlignment="center"
-            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/tvBeginTime"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -87,7 +83,6 @@
             android:layout_marginTop="8dp"
             android:text="@string/template"
             android:textAlignment="center"
-            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/tvQuota"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

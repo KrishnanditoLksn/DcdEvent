@@ -10,4 +10,19 @@
     <string name="template">TextView</string>
     <string name="finished">Finished</string>
     <string name="textcontent">TextContent</string>
+    <string name="share">Share</string>
+    <string name="registrasi">Registrasi</string>
+    <string name="fav">Fav</string>
+    <string name="favorite">Favorite</string>
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="title_login_page">"Welcome To Login Page "</string>
+    <string name="message_login_page">Login</string>
+    <string name="email">Email</string>
+    <string name="password">"Password "</string>
+    <string name="title_signup_page">Register your account</string>
+    <string name="name">Username</string>
+    <string name="signup">Register</string>
+    <string name="title_welcome_page">"Welcome to Dicoding Indonesia "</string>
+    <string name="message_welcome_page">"Accelerate digital talent in Indonesia "</string>
 </resources>
